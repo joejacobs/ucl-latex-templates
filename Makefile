@@ -4,14 +4,15 @@
 LaTeXSources= $(wildcard *.tex *.bib) ucl_thesis.cls
 
 .PHONY: all clean superclean
-all: phd-thesis.pdf mres-thesis.pdf mphil-thesis.pdf phd-thesis-twoside.pdf
+all: phd-thesis.pdf mres-thesis.pdf mphil-thesis.pdf phd-thesis-twoside.pdf report.pdf
 
 
-phd-thesis.pdf mres-thesis.pdf mphil-thesis.pdf phd-thesis-twoside.pdf: $(LaTeXSources)
+phd-thesis.pdf mres-thesis.pdf mphil-thesis.pdf phd-thesis-twoside.pdf report.pdf: $(LaTeXSources)
 	lualatex --halt-on-error $(basename $@).tex
 	bibtex $(basename $@)
 	lualatex --halt-on-error $(basename $@).tex
 	lualatex --halt-on-error $(basename $@).tex
+	open $(basename $@).pdf
 
 
 

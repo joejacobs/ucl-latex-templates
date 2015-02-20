@@ -147,6 +147,9 @@
 \@draftmodefalse
 \DeclareOption{draft}{\@draftmodetrue\PassOptionsToClass{draft}{book}}
 \DeclareOption{final}{\@draftmodefalse\PassOptionsToClass{final}{book}}
+\newif \if@notreport
+\@notreporttrue
+\DeclareOption{report}{\@notreportfalse}
 \PassOptionsToClass{a4paper}{book}
 \DeclareOption*{\PassOptionsToClass{\CurrentOption}{book}}
 \ProcessOptions
@@ -426,14 +429,16 @@
         {\Large \itshape \@author}\\%
     \end{center}%
     \vfill%
-    \begin{center}%
-    A dissertation submitted in partial fulfillment \\
-    of the requirements for the degree of \\
-    \textbf{\@degree@string} \\
-    of \\
-    \textbf{University College London}.
-    \end{center}%
-    \vspace{2em}%
+    \if@notreport
+        \begin{center}%
+        A dissertation submitted in partial fulfillment \\
+        of the requirements for the degree of \\
+        \textbf{\@degree@string} \\
+        of \\
+        \textbf{University College London}.
+        \end{center}%
+        \vspace{2em}%
+    \fi
     \begin{center}%
     \@department \\
     University College London\\
